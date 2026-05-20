@@ -9,20 +9,33 @@ export default function RecipeDetailScreen({ route }) {
   if (!recipe) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.errorText}>Рецепт не знайдено.</Text>
+        <Text style={styles.errorTitle}>Рецепт не знайдено</Text>
+        <Text style={styles.errorText}>
+          Спробуйте повернутися назад і вибрати інший рецепт.
+        </Text>
       </View>
     );
   }
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.title}>{recipe.title}</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>{recipe.title}</Text>
+        <Text style={styles.description}>{recipe.description}</Text>
+      </View>
 
-      <Text style={styles.description}>{recipe.description}</Text>
+      <View style={styles.infoRow}>
+        <View style={styles.infoCard}>
+          <Text style={styles.infoIcon}>⏱</Text>
+          <Text style={styles.infoLabel}>Час</Text>
+          <Text style={styles.infoValue}>{recipe.time}</Text>
+        </View>
 
-      <View style={styles.infoBox}>
-        <Text style={styles.infoText}>⏱ Час приготування: {recipe.time}</Text>
-        <Text style={styles.infoText}>⭐ Складність: {recipe.difficulty}</Text>
+        <View style={styles.infoCard}>
+          <Text style={styles.infoIcon}>⭐</Text>
+          <Text style={styles.infoLabel}>Складність</Text>
+          <Text style={styles.infoValue}>{recipe.difficulty}</Text>
+        </View>
       </View>
 
       <View style={styles.section}>
@@ -67,25 +80,33 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF8F0',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
+    padding: 24,
+  },
+  header: {
+    marginBottom: 18,
   },
   title: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: '700',
     color: '#3D2C1E',
-    marginBottom: 12,
+    marginBottom: 10,
   },
   description: {
     fontSize: 16,
     color: '#6B4F3A',
     lineHeight: 24,
-    marginBottom: 16,
   },
-  infoBox: {
+  infoRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 20,
+  },
+  infoCard: {
+    flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 16,
     borderRadius: 16,
-    marginBottom: 20,
+    alignItems: 'center',
     elevation: 2,
     shadowColor: '#000',
     shadowOpacity: 0.08,
@@ -95,11 +116,20 @@ const styles = StyleSheet.create({
       height: 2,
     },
   },
-  infoText: {
-    fontSize: 15,
-    color: '#3D2C1E',
+  infoIcon: {
+    fontSize: 24,
     marginBottom: 6,
-    fontWeight: '600',
+  },
+  infoLabel: {
+    fontSize: 13,
+    color: '#8A5A36',
+    marginBottom: 4,
+  },
+  infoValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#3D2C1E',
+    textAlign: 'center',
   },
   section: {
     backgroundColor: '#FFFFFF',
@@ -163,9 +193,17 @@ const styles = StyleSheet.create({
     color: '#6B4F3A',
     lineHeight: 24,
   },
-  errorText: {
-    fontSize: 18,
-    color: '#B00020',
+  errorTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#3D2C1E',
+    marginBottom: 8,
     textAlign: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    color: '#6B4F3A',
+    textAlign: 'center',
+    lineHeight: 22,
   },
 });
