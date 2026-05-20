@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import CategoryCard from '../components/CategoryCard';
 import { categories } from '../data/recipes';
+import { colors } from '../constants/colors';
 
 export default function CategoriesScreen({ navigation }) {
   const renderCategory = ({ item }) => {
@@ -35,12 +36,13 @@ export default function CategoriesScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.background,
     padding: 16,
   },
   screenTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#3D2C1E',
+    color: colors.primary,
     marginBottom: 16,
   },
   list: {

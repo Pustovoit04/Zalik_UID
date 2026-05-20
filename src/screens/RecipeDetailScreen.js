@@ -1,5 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+
 import { recipes } from '../data/recipes';
+import { colors } from '../constants/colors';
 
 export default function RecipeDetailScreen({ route }) {
   const { recipeId } = route.params;
@@ -25,7 +27,7 @@ export default function RecipeDetailScreen({ route }) {
       </View>
 
       <View style={styles.infoRow}>
-        <View style={styles.infoCard}>
+        <View style={[styles.infoCard, styles.infoCardLeft]}>
           <Text style={styles.infoIcon}>⏱</Text>
           <Text style={styles.infoLabel}>Час</Text>
           <Text style={styles.infoValue}>{recipe.time}</Text>
@@ -69,7 +71,7 @@ export default function RecipeDetailScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF8F0',
+    backgroundColor: colors.background,
   },
   content: {
     padding: 16,
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
   },
   centered: {
     flex: 1,
-    backgroundColor: '#FFF8F0',
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 24,
@@ -88,22 +90,21 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: '700',
-    color: '#3D2C1E',
+    color: colors.primary,
     marginBottom: 10,
   },
   description: {
     fontSize: 16,
-    color: '#6B4F3A',
+    color: colors.secondary,
     lineHeight: 24,
   },
   infoRow: {
     flexDirection: 'row',
-    gap: 12,
     marginBottom: 20,
   },
   infoCard: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.card,
     padding: 16,
     borderRadius: 16,
     alignItems: 'center',
@@ -116,23 +117,26 @@ const styles = StyleSheet.create({
       height: 2,
     },
   },
+  infoCardLeft: {
+    marginRight: 12,
+  },
   infoIcon: {
     fontSize: 24,
     marginBottom: 6,
   },
   infoLabel: {
     fontSize: 13,
-    color: '#8A5A36',
+    color: colors.accent,
     marginBottom: 4,
   },
   infoValue: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#3D2C1E',
+    color: colors.primary,
     textAlign: 'center',
   },
   section: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.card,
     padding: 16,
     borderRadius: 16,
     marginBottom: 20,
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#3D2C1E',
+    color: colors.primary,
     marginBottom: 12,
   },
   ingredientItem: {
@@ -158,14 +162,14 @@ const styles = StyleSheet.create({
   },
   bullet: {
     fontSize: 18,
-    color: '#8A5A36',
+    color: colors.accent,
     marginRight: 8,
     lineHeight: 22,
   },
   ingredientText: {
     flex: 1,
     fontSize: 16,
-    color: '#6B4F3A',
+    color: colors.secondary,
     lineHeight: 22,
   },
   stepItem: {
@@ -177,32 +181,32 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#8A5A36',
+    backgroundColor: colors.accent,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
   },
   stepNumberText: {
-    color: '#FFFFFF',
+    color: colors.card,
     fontSize: 14,
     fontWeight: '700',
   },
   stepText: {
     flex: 1,
     fontSize: 16,
-    color: '#6B4F3A',
+    color: colors.secondary,
     lineHeight: 24,
   },
   errorTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#3D2C1E',
+    color: colors.primary,
     marginBottom: 8,
     textAlign: 'center',
   },
   errorText: {
     fontSize: 16,
-    color: '#6B4F3A',
+    color: colors.secondary,
     textAlign: 'center',
     lineHeight: 22,
   },

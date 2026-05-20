@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import RecipeListScreen from '../screens/RecipeListScreen';
 import RecipeDetailScreen from '../screens/RecipeDetailScreen';
+import { colors } from '../constants/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,14 +15,14 @@ export default function AppNavigator() {
         initialRouteName="Categories"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#FFF3E6',
+            backgroundColor: colors.lightAccent,
           },
-          headerTintColor: '#3D2C1E',
+          headerTintColor: colors.primary,
           headerTitleStyle: {
             fontWeight: '700',
           },
           contentStyle: {
-            backgroundColor: '#FFF8F0',
+            backgroundColor: colors.background,
           },
         }}
       >

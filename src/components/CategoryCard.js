@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { colors } from '../constants/colors';
 
 export default function CategoryCard({ category, onPress }) {
   return (
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.card,
     padding: 16,
     borderRadius: 16,
     marginBottom: 12,
@@ -49,12 +50,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#3D2C1E',
+    color: colors.primary,
     marginBottom: 4,
   },
   description: {
     fontSize: 14,
-    color: '#6B4F3A',
+    color: colors.secondary,
     lineHeight: 20,
   },
 });
