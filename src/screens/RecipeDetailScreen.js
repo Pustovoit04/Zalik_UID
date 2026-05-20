@@ -36,9 +36,19 @@ export default function RecipeDetailScreen({ route }) {
         ))}
       </View>
 
-      <Text style={styles.note}>
-        Кроки приготування будуть додані на наступному етапі.
-      </Text>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Кроки приготування</Text>
+
+        {recipe.steps.map((step, index) => (
+          <View key={index} style={styles.stepItem}>
+            <View style={styles.stepNumber}>
+              <Text style={styles.stepNumberText}>{index + 1}</Text>
+            </View>
+
+            <Text style={styles.stepText}>{step}</Text>
+          </View>
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -128,13 +138,30 @@ const styles = StyleSheet.create({
     color: '#6B4F3A',
     lineHeight: 22,
   },
-  note: {
-    fontSize: 15,
-    color: '#8A5A36',
-    lineHeight: 22,
-    backgroundColor: '#FFF3E6',
-    padding: 14,
-    borderRadius: 12,
+  stepItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 14,
+  },
+  stepNumber: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#8A5A36',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  stepNumberText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  stepText: {
+    flex: 1,
+    fontSize: 16,
+    color: '#6B4F3A',
+    lineHeight: 24,
   },
   errorText: {
     fontSize: 18,
