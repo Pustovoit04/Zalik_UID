@@ -4,19 +4,24 @@ import { colors } from '../constants/colors';
 export default function RecipeCard({ recipe, onPress }) {
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.card,
-        pressed && styles.pressed,
-      ]}
+      style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       onPress={onPress}
     >
-      <Text style={styles.title}>{recipe.title}</Text>
+      <View style={styles.topRow}>
+        <Text style={styles.title}>{recipe.title}</Text>
+        <Text style={styles.arrow}>›</Text>
+      </View>
 
       <Text style={styles.description}>{recipe.description}</Text>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoText}>⏱ {recipe.time}</Text>
-        <Text style={styles.infoText}>⭐ {recipe.difficulty}</Text>
+        <View style={styles.infoBadge}>
+          <Text style={styles.infoText}>⏱ {recipe.time}</Text>
+        </View>
+
+        <View style={styles.infoBadge}>
+          <Text style={styles.infoText}>⭐ {recipe.difficulty}</Text>
+        </View>
       </View>
     </Pressable>
   );
@@ -26,39 +31,58 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card,
     padding: 16,
-    borderRadius: 16,
-    marginBottom: 12,
-    elevation: 2,
+    borderRadius: 20,
+    marginBottom: 14,
+    elevation: 3,
     shadowColor: '#000',
     shadowOpacity: 0.08,
-    shadowRadius: 6,
+    shadowRadius: 8,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 3,
     },
   },
   pressed: {
-    opacity: 0.7,
+    opacity: 0.75,
+    transform: [{ scale: 0.98 }],
+  },
+  topRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
   },
   title: {
-    fontSize: 18,
+    flex: 1,
+    fontSize: 19,
     fontWeight: '700',
     color: colors.primary,
-    marginBottom: 8,
+  },
+  arrow: {
+    fontSize: 28,
+    color: colors.accent,
+    marginLeft: 8,
   },
   description: {
     fontSize: 14,
     color: colors.secondary,
-    lineHeight: 20,
+    lineHeight: 21,
     marginBottom: 12,
   },
   infoRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  infoBadge: {
+    backgroundColor: colors.lightAccent,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 12,
+    marginRight: 8,
+    marginBottom: 4,
   },
   infoText: {
-    fontSize: 14,
+    fontSize: 13,
     color: colors.accent,
-    fontWeight: '600',
+    fontWeight: '700',
   },
 });

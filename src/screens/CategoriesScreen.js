@@ -1,14 +1,19 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import CategoryCard from '../components/CategoryCard';
-import { categories } from '../data/recipes';
+import { categories, recipes } from '../data/recipes';
 import { colors } from '../constants/colors';
 
 export default function CategoriesScreen({ navigation }) {
+  const getRecipeCount = (categoryId) => {
+    return recipes.filter((recipe) => recipe.categoryId === categoryId).length;
+  };
+
   const renderCategory = ({ item }) => {
     return (
       <CategoryCard
         category={item}
+        recipeCount={getRecipeCount(item.id)}
         onPress={() =>
           navigation.navigate('RecipeList', {
             categoryId: item.id,
@@ -21,13 +26,17 @@ export default function CategoriesScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.screenTitle}>Оберіть категорію</Text>
+      <Text style={styles.screenTitle}>Книга рецептів</Text>
+      <Text style={styles.subtitle}>
+        Оберіть категорію та знайдіть страву для приготування
+      </Text>
 
       <FlatList
         data={categories}
         keyExtractor={(item) => item.id}
         renderItem={renderCategory}
         contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
@@ -40,12 +49,18 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   screenTitle: {
-    fontSize: 24,
-    fontWeight: '700',
+    fontSize: 30,
+    fontWeight: '800',
     color: colors.primary,
-    marginBottom: 16,
+    marginBottom: 6,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: colors.secondary,
+    lineHeight: 22,
+    marginBottom: 20,
   },
   list: {
-    paddingBottom: 16,
+    paddingBottom: 20,
   },
 });

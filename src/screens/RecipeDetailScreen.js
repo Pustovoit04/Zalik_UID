@@ -21,7 +21,7 @@ export default function RecipeDetailScreen({ route }) {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.header}>
+      <View style={styles.headerCard}>
         <Text style={styles.title}>{recipe.title}</Text>
         <Text style={styles.description}>{recipe.description}</Text>
       </View>
@@ -68,6 +68,17 @@ export default function RecipeDetailScreen({ route }) {
   );
 }
 
+const sharedShadow = {
+  elevation: 3,
+  shadowColor: '#000',
+  shadowOpacity: 0.08,
+  shadowRadius: 8,
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -84,12 +95,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
-  header: {
+  headerCard: {
+    backgroundColor: colors.lightAccent,
+    padding: 18,
+    borderRadius: 22,
     marginBottom: 18,
   },
   title: {
     fontSize: 30,
-    fontWeight: '700',
+    fontWeight: '800',
     color: colors.primary,
     marginBottom: 10,
   },
@@ -106,22 +120,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.card,
     padding: 16,
-    borderRadius: 16,
+    borderRadius: 18,
     alignItems: 'center',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    ...sharedShadow,
   },
   infoCardLeft: {
     marginRight: 12,
   },
   infoIcon: {
-    fontSize: 24,
+    fontSize: 26,
     marginBottom: 6,
   },
   infoLabel: {
@@ -138,49 +145,42 @@ const styles = StyleSheet.create({
   section: {
     backgroundColor: colors.card,
     padding: 16,
-    borderRadius: 16,
+    borderRadius: 20,
     marginBottom: 20,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    ...sharedShadow,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '700',
+    fontSize: 21,
+    fontWeight: '800',
     color: colors.primary,
-    marginBottom: 12,
+    marginBottom: 14,
   },
   ingredientItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 8,
+    marginBottom: 9,
   },
   bullet: {
-    fontSize: 18,
+    fontSize: 20,
     color: colors.accent,
     marginRight: 8,
-    lineHeight: 22,
+    lineHeight: 24,
   },
   ingredientText: {
     flex: 1,
     fontSize: 16,
     color: colors.secondary,
-    lineHeight: 22,
+    lineHeight: 24,
   },
   stepItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 14,
+    marginBottom: 16,
   },
   stepNumber: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
     backgroundColor: colors.accent,
     alignItems: 'center',
     justifyContent: 'center',
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   stepNumberText: {
     color: colors.card,
     fontSize: 14,
-    fontWeight: '700',
+    fontWeight: '800',
   },
   stepText: {
     flex: 1,

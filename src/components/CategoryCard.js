@@ -1,20 +1,24 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../constants/colors';
 
-export default function CategoryCard({ category, onPress }) {
+export default function CategoryCard({ category, recipeCount, onPress }) {
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.card,
-        pressed && styles.pressed,
-      ]}
+      style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       onPress={onPress}
     >
-      <Text style={styles.icon}>{category.icon}</Text>
+      <View style={styles.iconContainer}>
+        <Text style={styles.icon}>{category.icon}</Text>
+      </View>
 
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{category.title}</Text>
+        <View style={styles.titleRow}>
+          <Text style={styles.title}>{category.title}</Text>
+          <Text style={styles.badge}>{recipeCount}</Text>
+        </View>
+
         <Text style={styles.description}>{category.description}</Text>
+        <Text style={styles.actionText}>Переглянути рецепти →</Text>
       </View>
     </Pressable>
   );
@@ -26,36 +30,68 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.card,
     padding: 16,
-    borderRadius: 16,
-    marginBottom: 12,
-    elevation: 2,
+    borderRadius: 20,
+    marginBottom: 14,
+    elevation: 3,
     shadowColor: '#000',
     shadowOpacity: 0.08,
-    shadowRadius: 6,
+    shadowRadius: 8,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 3,
     },
   },
   pressed: {
-    opacity: 0.7,
+    opacity: 0.75,
+    transform: [{ scale: 0.98 }],
+  },
+  iconContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 18,
+    backgroundColor: colors.lightAccent,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 14,
   },
   icon: {
-    fontSize: 36,
-    marginRight: 14,
+    fontSize: 32,
   },
   textContainer: {
     flex: 1,
   },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
   title: {
+    flex: 1,
     fontSize: 18,
     fontWeight: '700',
     color: colors.primary,
-    marginBottom: 4,
+  },
+  badge: {
+    minWidth: 28,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 12,
+    backgroundColor: colors.accent,
+    color: colors.card,
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '700',
+    overflow: 'hidden',
   },
   description: {
     fontSize: 14,
     color: colors.secondary,
     lineHeight: 20,
+    marginBottom: 6,
+  },
+  actionText: {
+    fontSize: 13,
+    color: colors.accent,
+    fontWeight: '700',
   },
 });
